@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>ProxyChecker Dashboard</title>
+
+		<!-- Google Fonts: Poppins -->
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+		<style>
+			/* Reset & Base */
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+			}
+
+			body {
+				margin: 0;
+				font-family: 'Poppins', sans-serif;
+				background: #f9fafb;
+				color: #2e3440;
+				line-height: 1.5;
+			}
+
+			/* Header */
+			header {
+				background: linear-gradient(90deg, #1e3a8a, #2563eb);
+				color: #fff;
+				padding: 20px 40px;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+				position: sticky;
+				top: 0;
+				z-index: 1000;
+			}
+
+			header h1 {
+				font-weight: 600;
+				font-size: 1.75rem;
+				letter-spacing: 0.05em;
+				margin: 0;
+			}
+
+			header .username {
+				background: rgba(255 255 255 / 0.15);
+				padding: 8px 22px;
+				border-radius: 28px;
+				font-weight: 600;
+				font-size: 1.15rem;
+				user-select: none;
+				white-space: nowrap;
+			}
+
+			/* Container */
+			.container {
+				max-width: 960px;
+				margin: 48px auto;
+				padding: 0 24px 48px;
+			}
+
+			/* Welcome */
+			.welcome {
+				font-size: 1.625rem;
+				font-weight: 600;
+				margin-bottom: 40px;
+				color: #1f2937;
+				word-wrap: break-word;
+			}
+
+			/* Card Base */
+			section {
+				background: #fff;
+				border-radius: 20px;
+				box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+				padding: 36px 48px;
+				margin-bottom: 48px;
+			}
+
+			/* Usage Card */
+			.usage-title {
+				font-size: 1.375rem;
+				font-weight: 700;
+				color: #2563eb;
+				display: flex;
+				align-items: center;
+				gap: 18px;
+				margin-bottom: 24px;
+			}
+
+			.usage-title i {
+				font-size: 2.1rem;
+			}
+
+			.progress-bar {
+				background: #e5e7eb;
+				border-radius: 50px;
+				overflow: hidden;
+				height: 32px;
+				box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.12);
+			}
+
+			.progress {
+				height: 100%;
+				width: 0%;
+				text-align: center;
+				line-height: 32px;
+				font-weight: 700;
+				color: white;
+				font-size: 1.05rem;
+				transition: width 0.75s cubic-bezier(0.4, 0, 0.2, 1),
+					background-color 0.5s ease;
+				user-select: none;
+				white-space: nowrap;
+			}
+
+			.progress.green {
+				background: #16a34a;
+				/* Tailwind green-600 */
+			}
+
+			.progress.blue {
+				background: #2563eb;
+				/* Tailwind blue-600 */
+			}
+
+			.progress.orange {
+				background: #f97316;
+				/* Tailwind orange-500 */
+			}
+
+			.progress.red {
+				background: #dc2626;
+				/* Tailwind red-600 */
+			}
+
+			.usage-text {
+				margin-top: 18px;
+				font-size: 1.15rem;
+				color: #4b5563;
+				word-break: break-word;
+			}
+
+			/* Proxy Details */
+			.proxy-details h3 {
+				font-weight: 700;
+				font-size: 1.4rem;
+				color: #2563eb;
+				display: flex;
+				align-items: center;
+				gap: 20px;
+				margin-top: 0;
+				margin-bottom: 30px;
+			}
+
+			.proxy-details h3 i {
+				font-size: 2.2rem;
+			}
+
+			.proxy-details p {
+				font-size: 1.1rem;
+				line-height: 1.8;
+				margin-bottom: 28px;
+				color: #374151;
+			}
+
+			.proxy-details ul {
+				list-style: none;
+				padding-left: 0;
+				font-size: 1.1rem;
+				color: #4b5563;
+			}
+
+			.proxy-details ul li {
+				margin-bottom: 20px;
+				display: flex;
+				align-items: center;
+				gap: 14px;
+			}
+
+			.proxy-details ul li b {
+				min-width: 160px;
+				color: #1e40af;
+			}
+
+			.proxy-details ul li::before {
+				content: "•";
+				color: #2563eb;
+				font-weight: 900;
+				font-size: 1.2rem;
+				margin-right: 14px;
+			}
+
+			/* Notes Section */
+			.notes h3 {
+				font-weight: 700;
+				font-size: 1.4rem;
+				color: #2563eb;
+				display: flex;
+				align-items: center;
+				gap: 20px;
+				margin-top: 0;
+				margin-bottom: 30px;
+			}
+
+			.notes h3 i {
+				font-size: 2.2rem;
+			}
+
+			.notes ul {
+				list-style: none;
+				padding-left: 0;
+				font-size: 1.1rem;
+				color: #374151;
+			}
+
+			.notes ul li {
+				margin-bottom: 20px;
+				display: flex;
+				align-items: center;
+				gap: 16px;
+			}
+
+			.notes ul li::before {
+				content: "\f05a";
+				/* FontAwesome info-circle */
+				font-family: "Font Awesome 6 Free";
+				font-weight: 900;
+				color: #2563eb;
+				font-size: 20px;
+				line-height: 1;
+			}
+
+			/* Responsive */
+			@media (max-width: 750px) {
+				header {
+					flex-direction: column;
+					gap: 14px;
+					padding: 20px 24px;
+				}
+
+				header h1 {
+					font-size: 1.5rem;
+				}
+
+				header .username {
+					padding: 8px 18px;
+					font-size: 1rem;
+				}
+
+				.container {
+					margin: 32px 16px;
+					padding: 0 16px 48px;
+				}
+
+				section {
+					padding: 30px 24px;
+					margin-bottom: 36px;
+				}
+
+				.usage-title {
+					font-size: 1.2rem;
+				}
+
+				.usage-title i,
+				.proxy-details h3 i,
+				.notes h3 i {
+					font-size: 1.6rem;
+				}
+
+				.welcome {
+					font-size: 1.4rem;
+				}
+			}
+
+			@media (max-width: 400px) {
+
+				.usage-text,
+				.proxy-details p,
+				.proxy-details ul li,
+				.notes ul li {
+					font-size: 1rem;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<header>
+			<h1>ProxyChecker Dashboard</h1>
+			<div class="username" title="Logged in user">@shahin01</div>
+		</header>
+
+		<main class="container" role="main" aria-label="Dashboard Content">
+			<div class="welcome" aria-live="polite">
+				Welcome to your Dashboard, <b>@shahin01</b>!
+			</div>
+
+			<section class="usage-card" aria-labelledby="usage-title">
+				<h2 id="usage-title" class="usage-title">
+					<i class="fa-solid fa-signal"></i>
+					Available Data Usage
+				</h2>
+				<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Available data usage progress bar">
+					<div class="progress" id="progressBar">0%</div>
+				</div>
+				<p class="usage-text" id="usageText">
+					You have <b id="dataLeftText">0GB</b> available out of 5GB
+				</p>
+			</section>
+
+			<section class="proxy-details" aria-labelledby="proxy-details-title">
+				<h3 id="proxy-details-title">
+					<i class="fa-solid fa-network-wired"></i>
+					Residential Proxy Details
+				</h3>
+				<p>
+					Your residential proxy provides stable IPs from verified ISPs. Perfect for market research, ad verification, and bypassing geo-restrictions without detection.
+				</p>
+				<ul>
+					<li><b>Type:</b> Residential </li>
+					<li><b>IP Rotation:</b> Auto</li>
+					<li><b>Location Targeting:</b> United States</li>
+					<li><b>Speed:</b> High </li>
+				</ul>
+			</section>
+
+			<section class="notes" aria-labelledby="notes-title">
+				<h3 id="notes-title">
+					<i class="fa-solid fa-lightbulb"></i>
+					Proxy Usage Tips
+				</h3>
+				<ul>
+					<li>Always choose the nearest location for fastest connection.</li>
+					<li>Avoid reusing the same IP for sensitive tasks.</li>
+					<li>Rotate IPs periodically for maximum anonymity.</li>
+				</ul>
+			</section>
+		</main>
+
+		<script>
+			window.onload = function() {
+				const totalGB = 5;
+
+				const progressBar = document.getElementById('progressBar');
+				const dataLeftText = document.getElementById('dataLeftText');
+				const usageText = document.getElementById('usageText');
+
+				// === This value SHOULD come from your backend/admin panel dynamically ===
+				// Replace this static value with your backend logic or fetch from API
+				let availableGB = 2.1; // <-- example dynamic value from backend
+
+				function updateDashboard(value) {
+					let clampedValue = Math.min(Math.max(value, 0), totalGB);
+					let percentAvailable = (clampedValue / totalGB) * 100;
+
+					// Clear previous color classes
+					progressBar.classList.remove('green', 'blue', 'orange', 'red');
+
+					// Set color based on value ranges
+					if (percentAvailable >= 80) {
+						progressBar.classList.add('green');
+					} else if (percentAvailable >= 50) {
+						progressBar.classList.add('blue');
+					} else if (percentAvailable >= 20) {
+						progressBar.classList.add('orange');
+					} else {
+						progressBar.classList.add('red');
+					}
+
+					progressBar.style.width = percentAvailable + '%';
+					progressBar.textContent = Math.round(percentAvailable) + '%';
+
+					dataLeftText.textContent = clampedValue.toFixed(2) + 'GB';
+					usageText.textContent = `You have ${clampedValue.toFixed(2)}GB available out of ${totalGB}GB`;
+					progressBar.parentElement.setAttribute('aria-valuenow', Math.round(percentAvailable));
+				}
+
+				updateDashboard(availableGB);
+			}
+		</script>
+
+	</body>
+
+</html>
