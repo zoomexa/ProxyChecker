@@ -348,15 +348,16 @@
 
 		<script>
 			window.onload = function() {
-				const totalGB = 5;
+				const totalGB = 4.98;
 
 				const progressBar = document.getElementById('progressBar');
 				const dataLeftText = document.getElementById('dataLeftText');
 				const usageText = document.getElementById('usageText');
 
+			
 				// === This value SHOULD come from your backend/admin panel dynamically ===
 				// Replace this static value with your backend logic or fetch from API
-				let availableGB = 2.1; // <-- example dynamic value from backend
+				let availableGB = 5; // <-- example dynamic value from backend
 
 				function updateDashboard(value) {
 					let clampedValue = Math.min(Math.max(value, 0), totalGB);
