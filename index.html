@@ -1,166 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ProxyChecker - Home</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProxyChecker - Login</title>
+<style>
     body {
-      font-family: "Segoe UI", Arial, sans-serif;
-      background: #f3f4f6;
-      color: #1f2937;
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: linear-gradient(135deg, #2563eb, #1e40af);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
     }
-
-    header {
-      background: linear-gradient(135deg, #2563eb, #1e40af);
-      color: white;
-      padding: 20px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    .login-container {
+        background: white;
+        padding: 40px;
+        border-radius: 10px;
+        width: 350px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        animation: fadeIn 0.7s ease-in-out;
     }
-
-    header h1 {
-      font-size: 22px;
-      letter-spacing: 1px;
-    }
-
-    header a {
-      background: white;
-      color: #2563eb;
-      padding: 10px 20px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    header a:hover {
-      background: #f0f0f0;
-    }
-
-    main {
-      max-width: 900px;
-      margin: 50px auto;
-      background: white;
-      border-radius: 10px;
-      padding: 40px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
-      animation: fadeIn 0.7s ease-in-out;
-    }
-
     h2 {
-      font-size: 28px;
-      text-align: center;
-      margin-bottom: 10px;
+        text-align: center;
+        color: #1f2937;
+        margin-bottom: 25px;
     }
-
-    p {
-      text-align: center;
-      font-size: 16px;
-      color: #4b5563;
-      margin-bottom: 25px;
-      line-height: 1.6;
+    label {
+        display: block;
+        margin-top: 15px;
+        font-weight: 500;
+        color: #374151;
     }
-
-    .login-btn {
-      display: inline-block;
-      background: linear-gradient(135deg, #2563eb, #1e40af);
-      color: white;
-      padding: 14px 32px;
-      font-size: 16px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 500;
-      transition: 0.3s ease-in-out;
+    input, select {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border-radius: 6px;
+        border: 1px solid #d1d5db;
+        font-size: 14px;
     }
-
-    .login-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+    button {
+        width: 100%;
+        padding: 12px;
+        margin-top: 20px;
+        background: linear-gradient(135deg, #2563eb, #1e40af);
+        border: none;
+        border-radius: 8px;
+        color: white;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: 0.3s;
     }
-
-    .btn-container {
-      text-align: center;
-      margin-bottom: 35px;
+    button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
     }
-
-    .notes {
-      display: grid;
-      gap: 20px;
+    .error {
+        color: red;
+        font-size: 14px;
+        margin-top: 10px;
+        display: none;
+        text-align: center;
     }
-
-    .note-card {
-      background: #f9fafb;
-      padding: 20px;
-      border-left: 5px solid #2563eb;
-      border-radius: 6px;
-      transition: 0.3s;
-    }
-
-    .note-card:hover {
-      background: #f3f4f6;
-      transform: translateY(-2px);
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #1f2937;
-      color: white;
-      font-size: 14px;
-      margin-top: 50px;
-    }
-
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
     }
-  </style>
+</style>
 </head>
 <body>
 
-  <header>
-    <h1>ProxyChecker</h1>
-    <a href="login.html">Login</a>
-  </header>
+<div class="login-container">
+    <h2>Login</h2>
+    <label for="userid">User ID</label>
+    <input type="text" id="userid" placeholder="Enter User ID">
+    
+    <label for="password">Password</label>
+    <input type="password" id="password" placeholder="Enter Password">
+    
+    <label for="service">Select Service</label>
+    <select id="service">
+        <option value="">-- Select Service --</option>
+        <option value="ProxyLite">ProxyLite</option>
+        <option value="DataImPulse">DataImPulse</option>
+    </select>
 
-  <main>
-    <h2>Welcome to ProxyChecker</h2>
-    <p>Test and verify your proxies with speed, accuracy, and reliability. Designed for professionals who need results they can trust.</p>
+    <button onclick="login()">Login</button>
+    <div class="error" id="error-msg">Invalid credentials or unauthorized service!</div>
+</div>
 
-    <div class="btn-container">
-      <a href="login.html" class="login-btn">Get Started</a>
-    </div>
+<script>
+function login() {
+    const userId = document.getElementById('userid').value.trim();
+    const password = document.getElementById('password').value.trim();
+    const service = document.getElementById('service').value;
+    const errorMsg = document.getElementById('error-msg');
 
-    <div class="notes">
-      <div class="note-card">
-        <strong>What is a Proxy?</strong><br>
-        A proxy server acts as a bridge between your device and the internet, helping to hide your IP address and improve security.
-      </div>
-
-      <div class="note-card">
-        <strong>Why Use ProxyChecker?</strong><br>
-        Our tool lets you check proxy speed, location, and anonymity level before putting them into action.
-      </div>
-
-      <div class="note-card">
-        <strong>Supported Protocols</strong><br>
-        HTTP, HTTPS, SOCKS4, and SOCKS5 proxies are fully supported with accurate test results.
-      </div>
-    </div>
-  </main>
-
-  <footer>
-    &copy; 2025 ProxyChecker. All rights reserved.
-  </footer>
+    // Check credentials
+    if (userId === "@shahin01" && password === "shahin123") {
+        if (service === "DataImPulse") {
+            window.location.href = "nextpage.html"; // Access granted
+        } else {
+            errorMsg.innerText = "You are not authorized to access ProxyLite!";
+            errorMsg.style.display = "block";
+        }
+    } else {
+        errorMsg.innerText = "Invalid User ID or Password!";
+        errorMsg.style.display = "block";
+    }
+}
+</script>
 
 </body>
 </html>
