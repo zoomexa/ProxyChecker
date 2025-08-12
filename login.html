@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProxyChecker - Login</title>
+<style>
+    body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: linear-gradient(135deg, #2563eb, #1e40af);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    .login-container {
+        background: white;
+        padding: 40px;
+        border-radius: 10px;
+        width: 350px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        animation: fadeIn 0.7s ease-in-out;
+    }
+    h2 {
+        text-align: center;
+        color: #1f2937;
+        margin-bottom: 25px;
+    }
+    label {
+        display: block;
+        margin-top: 15px;
+        font-weight: 500;
+        color: #374151;
+    }
+    input, select {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border-radius: 6px;
+        border: 1px solid #d1d5db;
+        font-size: 14px;
+    }
+    button {
+        width: 100%;
+        padding: 12px;
+        margin-top: 20px;
+        background: linear-gradient(135deg, #2563eb, #1e40af);
+        border: none;
+        border-radius: 8px;
+        color: white;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+    }
+    .error {
+        color: red;
+        font-size: 14px;
+        margin-top: 10px;
+        display: none;
+        text-align: center;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+</head>
+<body>
+
+<div class="login-container">
+    <h2>Login</h2>
+    <label for="userid">User ID</label>
+    <input type="text" id="userid" placeholder="Enter User ID">
+    
+    <label for="password">Password</label>
+    <input type="password" id="password" placeholder="Enter Password">
+    
+    <label for="service">Select Service</label>
+    <select id="service">
+        <option value="">-- Select Service --</option>
+        <option value="ProxyLite">ProxyLite</option>
+        <option value="DataImPulse">DataImPulse</option>
+    </select>
+
+    <button onclick="login()">Login</button>
+    <div class="error" id="error-msg">Invalid credentials or unauthorized service!</div>
+</div>
+
+<script>
+function login() {
+    const userId = document.getElementById('userid').value.trim();
+    const password = document.getElementById('password').value.trim();
+    const service = document.getElementById('service').value;
+    const errorMsg = document.getElementById('error-msg');
+
+    // Check credentials
+    if (userId === "@shahin01" && password === "shahin123") {
+        if (service === "DataImPulse") {
+            window.location.href = "nextpage.html"; // Access granted
+        } else {
+            errorMsg.innerText = "You are not authorized to access ProxyLite!";
+            errorMsg.style.display = "block";
+        }
+    } else {
+        errorMsg.innerText = "Invalid User ID or Password!";
+        errorMsg.style.display = "block";
+    }
+}
+</script>
+
+</body>
+</html>
