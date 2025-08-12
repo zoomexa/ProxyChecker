@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ProxyChecker - Login</title>
 <style>
     body {
@@ -76,10 +76,10 @@
 <div class="login-container">
     <h2>Login</h2>
     <label for="userid">User ID</label>
-    <input type="text" id="userid" placeholder="Enter User ID">
+    <input type="text" id="userid" placeholder="Enter User ID" />
     
     <label for="password">Password</label>
-    <input type="password" id="password" placeholder="Enter Password">
+    <input type="password" id="password" placeholder="Enter Password" />
     
     <label for="service">Select Service</label>
     <select id="service">
@@ -99,10 +99,11 @@ function login() {
     const service = document.getElementById('service').value;
     const errorMsg = document.getElementById('error-msg');
 
-    // Check credentials
+    errorMsg.style.display = "none"; // Hide error on every try
+
     if (userId === "@shahin01" && password === "shahin123") {
         if (service === "DataImPulse") {
-            window.location.href = "nextpage.html"; // Access granted
+            window.location.href = "shahindatadash.html"; // Redirect to shahindatadash.html
         } else {
             errorMsg.innerText = "You are not authorized to access ProxyLite!";
             errorMsg.style.display = "block";
