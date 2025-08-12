@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ProxyChecker - Home</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f3f4f6;
+      color: #1f2937;
+    }
+
+    header {
+      background: linear-gradient(135deg, #2563eb, #1e40af);
+      color: white;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      font-size: 22px;
+      letter-spacing: 1px;
+    }
+
+    header a {
+      background: white;
+      color: #2563eb;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    header a:hover {
+      background: #f0f0f0;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 50px auto;
+      background: white;
+      border-radius: 10px;
+      padding: 40px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+      animation: fadeIn 0.7s ease-in-out;
+    }
+
+    h2 {
+      font-size: 28px;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    p {
+      text-align: center;
+      font-size: 16px;
+      color: #4b5563;
+      margin-bottom: 25px;
+      line-height: 1.6;
+    }
+
+    .login-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #2563eb, #1e40af);
+      color: white;
+      padding: 14px 32px;
+      font-size: 16px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s ease-in-out;
+    }
+
+    .login-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn-container {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .notes {
+      display: grid;
+      gap: 20px;
+    }
+
+    .note-card {
+      background: #f9fafb;
+      padding: 20px;
+      border-left: 5px solid #2563eb;
+      border-radius: 6px;
+      transition: 0.3s;
+    }
+
+    .note-card:hover {
+      background: #f3f4f6;
+      transform: translateY(-2px);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #1f2937;
+      color: white;
+      font-size: 14px;
+      margin-top: 50px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>ProxyChecker</h1>
+    <a href="login.html">Login</a>
+  </header>
+
+  <main>
+    <h2>Welcome to ProxyChecker</h2>
+    <p>Test and verify your proxies with speed, accuracy, and reliability. Designed for professionals who need results they can trust.</p>
+
+    <div class="btn-container">
+      <a href="login.html" class="login-btn">Get Started</a>
+    </div>
+
+    <div class="notes">
+      <div class="note-card">
+        <strong>What is a Proxy?</strong><br>
+        A proxy server acts as a bridge between your device and the internet, helping to hide your IP address and improve security.
+      </div>
+
+      <div class="note-card">
+        <strong>Why Use ProxyChecker?</strong><br>
+        Our tool lets you check proxy speed, location, and anonymity level before putting them into action.
+      </div>
+
+      <div class="note-card">
+        <strong>Supported Protocols</strong><br>
+        HTTP, HTTPS, SOCKS4, and SOCKS5 proxies are fully supported with accurate test results.
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 ProxyChecker. All rights reserved.
+  </footer>
+
+</body>
+</html>
